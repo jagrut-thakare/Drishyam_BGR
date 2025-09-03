@@ -165,5 +165,28 @@ curl -X 'GET'   'http://127.0.0.1:8004/backgroundchange/status/869699b6-ac39-406
 }
 ```
 
+## Cloud Setup Instructions 
+
+```bash
+bash environment/nvidia_drivers.sh
+
+# Your system will reboot so wait for some time. then run following.
+
+bash environment/nvidia_drivers2.sh
+
+bash environment/anaconda_setup.sh
+
+conda create -n drishyam python=3.10 -y
+
+conda activate drishyam
+
+conda install -c conda-forge cudatoolkit cudnn nccl
+
+ln -sf $HOME/anaconda3/envs/drishyam/lib/python3.11/site-packages/nvidia/nvjitlink/lib/libnvJitLink.so.12 $HOME/anaconda3/envs/drishyam/lib/python3.11/site-packages/nvidia/cusparse/lib/libnvJitLink.so.12
+
+bash environment/build_linux.sh
+
+# Remember to upload .env file
+```
 ---
 
