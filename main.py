@@ -1,13 +1,13 @@
-from fastapi import FastAPI, UploadFile, File, Form
-from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
-from birefnet_model import generate_mask
-from inpaint import run_inpainting
+import uvicorn
 from PIL import Image
 import os, uuid, sys
-import uvicorn
-
 from dotenv import load_dotenv
+from inpaint import run_inpainting
+from birefnet_model import generate_mask
+from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, UploadFile, File, Form
+
 load_dotenv()
 
 sys.path.append(os.getcwd())
@@ -157,4 +157,5 @@ def get_status(generation_id: str):
 
 
 if __name__=="__main__":
-    uvicorn.run(app, port=8003)
+    
+    uvicorn.run("main:app", host="0.0.0.0", port=8001, reload=True)
