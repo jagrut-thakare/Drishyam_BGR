@@ -1,0 +1,16 @@
+cd Drishyam_BG/model
+
+wget https://github.com/ZhengPeng7/BiRefNet/releases/download/v1/BiRefNet-DIS-epoch_590.pth
+
+cd ..
+
+pip install -r requirements.txt
+pip install -r requirements2.txt
+
+uvicorn main:app --reload
+
+# How To Run 
+
+conda activate birefnet
+
+python main.py
